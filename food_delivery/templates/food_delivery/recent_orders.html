@@ -1,0 +1,26 @@
+{% extends 'food_delivery/layout.html' %}
+
+{% block body %}
+<h3>Recent Orders</h3>
+<ul class="list-group">
+    {% for i in order_details %}
+    <li class="list-group-item">
+        <div class="r-order-details">
+            <h4>{{i.dish.name}}</h4>
+            <span>Quantity : {{i.quantity}}</span>
+            <span>Bill : {{i.order.total_bill}} $</span>
+            {% if i.order.delivered %}
+                <span style="margin:10px;"class="alert alert-success">Status : Delivered </span>
+            {% else %}
+                <span class="alert alert-warning">Status : On the Way </span>
+            {% endif %}
+        </div>
+        <div class="r-order-img">
+            <img src="{{i.dish.image.url}}" alt="{{i.dish.name}}">
+        </div>
+    </li>
+    
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'food_delivery/layout.html' %}
+
+{% block title %}
+Partner
+{% endblock %}
+{% load cart %}
+{% block body %}
+<button class="btn btn-info"><a href="{% url 'add_item' %}">Add Item</a></button>
+{% if order_details %}
+<div class="pending-orders table">
+    <h4>Recent Orders</h4>
+    <table>
+        <thead>
+            <th>Customer Name</th>
+            <th>Dish Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th></th>
+        </thead>
+        {% for my_order in order_details %}
+        <tbody>
+            <tr>
+                <td>{{my_order.order.customer.username}}</td>
+                <td>{{my_order.dish.name}}</td>
+                <td>{{my_order.quantity}}</td>
+                <td>{{my_order.dish.price}}</td>
+                <td>{{my_order.dish.price|total:my_order.quantity}}$</td>
+                <td>{{my_order.order.address}}</td>
+                <td>{{my_order.order.contact}}</td>
+                <td>
+                    <form action="{% url 'change_delivery_status' %}" method="POST">
+                        {% csrf_token %}
+                        <button name="order" value="{{my_order.order.id}}" type="submit" class="btn btn-success">Delivered</button>
+
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    {% endif %}
+    
+{% if com_order_details %}
+    <div class="completed-orders table">
+        <h4>  Completed orders</h4>
+        <table>
+            <thead>
+                <th>Customer Name</th>
+                <th>Dish Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th></th>
+            </thead>
+            {% for my_order in com_order_details %}
+            <tbody>
+                <tr>
+                    <td>{{my_order.order.customer.username}}</td>
+                    <td>{{my_order.dish.name}}</td>
+                    <td>{{my_order.quantity}}</td>
+                    <td>{{my_order.dish.price}}</td>
+                    <td>{{my_order.dish.price|total:my_order.quantity}}$</td>
+                    <td>{{my_order.order.address}}</td>
+                    <td>{{my_order.order.contact}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+    </div>
+    {% endif %}
+
+{% endblock %}

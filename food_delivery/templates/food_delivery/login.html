@@ -1,0 +1,27 @@
+{% extends "food_delivery/layout.html" %}
+
+{% block body %}
+
+
+<div class="my-container">
+    <img class="signup-img" src="../../static/food_delivery/images/sign_up.png" alt="sign-up">
+<div class="signup-form">
+
+   <h2>Login</h2>
+   <img src="../../static/food_delivery/images/profile.svg" alt="profile">
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+    <form action="{% url 'login' %}" method="post" >
+        {% csrf_token %}
+        <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+        <input class="form-control" type="password" name="password" placeholder="Password">
+        <input class="btn btn-primary" type="submit" value="Login"><br>
+        Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+    </form>
+
+</div>
+</div>
+    
+
+{% endblock %}

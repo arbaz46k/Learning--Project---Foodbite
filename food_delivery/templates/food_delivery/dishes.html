@@ -1,0 +1,41 @@
+{% extends 'food_delivery/layout.html' %}
+
+{% block title %}
+Restuarant
+{% endblock%}
+{% load cart %}
+{% block body %}
+<div class="row">
+  {% for dish in dishes %}
+  <div class="card col-sm-6 col-md-4 col-lg-3 my-card">
+      <div class="card-body">
+        <img class="card-img-top" src="{{ dish.image.url }}" alt="{{dish.name}}">
+        <p class="card-text">{{ dish.name }}</p>
+        <span><b>{{dish.price}} $</b></span>
+        <p class="card-text">{{dish.description}}</p>
+        <div class="add-to-cart">
+          {% if dish.id|is_in_cart:request.session.cart %}
+          <form action="{% url 'dishes' restaurant %}" method="POST">
+            {% csrf_token %}
+            <button name="decrement" type="submit" class="decrement btn btn-dark" value="{{dish.id}}">-</button>
+          </form>
+
+          <span>{{dish.id|is_in_cart:request.session.cart}}</span>
+
+          <form action="{% url 'dishes' restaurant %}" method="POST">
+            {% csrf_token %}
+            <button name="increment" type="submit" class="increment btn btn-dark" value="{{dish.id}}">+</button>
+          </form>
+          {% else %}
+          <form action="{% url 'dishes' restaurant %}" method="POST">
+            {% csrf_token %}
+            <button name="increment" type="submit" class="add-to-cart-btn btn btn-dark" value="{{dish.id}}">Add to cart</button>
+          </form>
+
+          {% endif %}
+        </div>
+      </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'food_delivery/layout.html' %}
+
+{% block title %}
+    Cart
+{% endblock %}
+{% load cart %}
+
+{% block body %}
+    <table class="table">
+        <tr>
+            <th>Dish</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Amount</th>
+        </tr>
+        {% for key, value in order.items %}
+            <tr>
+                <td ><img class="cart-image" src="{{value.image.url}}" alt="{{value.name}}">{{value.name}}</td>
+                <td>{{key}}</td>
+                <td>{{value.price}}$</td>
+                <td>{{value.price|total:key}}$</td>
+            </tr>
+        {% endfor %}
+        <tfoot>
+            <tr>
+                <th>Total</th>
+                <th>{{order|total_bill}}$</th>
+            </tr>
+        </tfoot>
+    </table>
+    <div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-success border rounded float-right" data-toggle="modal" data-target="#exampleModal">
+            Checkout
+              </button>
+    </div>
+    
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Order details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{% url 'book_order' %}" method="POST">
+          {% csrf_token %}
+          <div class="modal-body">
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea class="form-control" name="address" rows="3" placeholder="Enter your Delivery address here" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Mobile No.">Mobile No.</label>
+                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    name="mobile-no" placeholder="Mobile no." required></input>
+                </div>
+          </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" id="book-now" class="btn btn-outline-success">Order</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

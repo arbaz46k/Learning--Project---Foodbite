@@ -1,0 +1,17 @@
+{% extends 'food_delivery/layout.html' %}
+
+{% block title %}
+add item
+{% endblock %}
+
+{% block body %}
+    <div >
+        <form class="add-item-form" action="{% url 'add_item' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h5>Add Item</h5>
+            {{form}}
+            <button style="margin-top: 12px;"
+                    class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
+{% endblock %}

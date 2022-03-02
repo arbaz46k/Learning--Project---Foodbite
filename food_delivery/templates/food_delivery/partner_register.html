@@ -1,0 +1,57 @@
+{% extends 'food_delivery/layout.html' %}
+
+{% block body %}
+
+
+<div class="my-container">
+    <img class="signup-img" src="../../static/food_delivery/images/sign_up.png" alt="sign-up">
+<div class="signup-form">
+
+   <h2>Register Restaurant</h2>
+   <img src="../../static/food_delivery/images/profile.svg" alt="profile">
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+    <form action="{% url 'partner_register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input class="form-control" autofocus type="text" name="username" placeholder="Restaurant name">
+        <input class="form-control" type="email" name="email" placeholder="Email Address">
+        <input class="form-control" type="file" name="image">
+        <input class="form-control" type="password" name="password" placeholder="Password">
+        <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+        <input class="btn btn-primary" type="submit" value="Register"><br>
+        Already have an account? <a href="{% url 'partner_login' %}">Log In here.</a>
+    </form> 
+
+</div>
+</div>
+    <!-- <h2>Register Your Restaurant</h2>
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+
+    <form action="{% url 'partner_register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="my-form">
+            <div class="form-group">
+                <input class="form-control" autofocus type="text" name="username" placeholder="Restaurant name">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Email Address">
+            </div>
+
+            <input class="form-control" type="file" name="image">
+
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Register">
+            Already have an account? <a href="{% url 'partner_login' %}">Log In here.</a>
+        </div>
+    </form> -->
+
+
+{% endblock %}

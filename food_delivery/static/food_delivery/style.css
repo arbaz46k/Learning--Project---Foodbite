@@ -1,0 +1,152 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+ul{
+    list-style: none;
+}
+
+header{
+    height: 60px;
+    width: 100vw;
+}
+.sidemenu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #3f3d56;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidemenu a {
+    padding: 8px 8px 8px 5px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #f9a03f;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidemenu a:hover {
+    color: #f88812;
+  }
+  
+  .sidemenu .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .fa-shopping-cart{
+      margin-right: 15px;
+      padding: 12px;
+      font-size: 30px;
+      float: right;
+  }
+
+.my-container{
+    display: flex;
+    /* flex-direction: row; */
+}
+
+.signup-img {
+    display: none;
+    width: 50vw;
+}
+
+.signup-form{
+    width: 90vw;
+    height: 80vh;
+    margin: auto;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #f0b42a;
+    border-radius: 40px;
+}
+
+.signup-form img{
+    width: 100px;
+    height: 100px;
+}
+.signup-form form{
+    width: 320px;
+}
+
+.signup-form form input{
+    /* border-bottom: black; */
+    margin: 10px;
+}
+
+.add-item-form{
+    border: 2px solid #f0b42a;
+    padding: 15px;
+    margin: auto;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+#content{
+    padding: 25% 25%;
+    height: 60vh ;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.card img{
+    height: 250px;
+    object-fit: cover ;
+}
+
+.cart-image{
+    height: 80px;
+}
+
+.add-to-cart{
+    display: flex;
+    flex-direction: row;
+}
+
+.add-to-cart span{
+    margin: 5px;
+}
+
+.table img{
+    height: 64px;
+    width: 64px;
+}
+
+.list-group-item{
+    box-shadow: 2px 2px 10px #afafaf;
+    margin: 10px;
+    display: flex;
+}
+.list-group-item img{
+    height: 80px;
+}
+
+
+@media only screen and (min-width:698px){
+
+    .signup-img {
+        display: block;
+        width: 50vw;
+    }
+    .signup-form{
+        width: 380px;
+        height: 510px;
+    }
+}
